@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Configuration // 빈 등록용
 @RequiredArgsConstructor
+// @Transactional(readOnly = true) // 미리 읽기용으로 걸고 아닌 애들만 오버로딩
 public class BaseInit {
 
     @Lazy
@@ -32,9 +33,11 @@ public class BaseInit {
             work1();
             work2();
 
-            new Thread(()->{
-                self.work3();
-            }).start();
+//            new Thread(()->{
+//                self.work3();
+//            }).start();
+            
+            work4();
         };
     }
 
@@ -50,7 +53,8 @@ public class BaseInit {
         postService.write("제목2", "내용2");
     }
 
-    @Transactional
+//    // 조회 작업에 그냥 트렌젝션을 걸면 비효율적임. 옵션을 붙이면 효율적으로
+    @Transactional(readOnly = true)
     void work2() {
         // postRepository.findById(1);
         // select * from post where id = 1;
@@ -68,5 +72,11 @@ public class BaseInit {
             throw new RuntimeException("예외 발생");
         }
         postService.delete(post2);
+    }
+
+    @Transactional
+    void work4() {
+        Post post1 = postService.findById(1).get();
+        postService.modify(post1, "제목1-수정", "내용1-수정");
     }
 }

@@ -25,6 +25,13 @@ public class PostService {
         return post; // 기본적으로 jpa가 제공하는 기능은 트렌젝션 -> 커밋 기능을 갖는다.
     }
 
+    // 수정
+    public void modify(Post post, String title, String body){
+        post.setTitle(title);
+        post.setBody(body);
+        postRepository.save(post);
+    }
+
 
     public Optional<Post> findById(int id){
         return postRepository.findById(id); // 트렌젝션 시작 -> SELECT * FROM post -> 트렌젝션 종료 -> 커밋

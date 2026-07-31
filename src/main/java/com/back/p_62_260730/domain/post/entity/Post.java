@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +21,7 @@ import java.time.LocalDateTime;
 @Entity // 클래스와 같은 Table을 DB에 만들어 줌
 @NoArgsConstructor
 // @RequiredArgsConstructor    // final 변수만 생성자 매개변수로 가능
+@EntityListeners(AuditingEntityListener.class)
 public class Post{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +30,10 @@ public class Post{
     private String title; // VARCHAR(255)
     // 내용
     private String body; // VARCHAR(255)
+    @CreatedDate
     private LocalDateTime createDate;
+
+    @LastModifiedDate
     private LocalDateTime modifyDate;
 
 //    // 추가적인 생성자가 있으면 기본 생성자는 자동 생성이 안됨. 만들 것 @NoArgsConstructor 이거 있으면 ㄱㅊ
