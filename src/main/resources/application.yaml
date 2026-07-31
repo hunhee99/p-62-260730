@@ -1,3 +1,42 @@
 spring:
+
   application:
     name: p-62-260730
+
+  # 로그 정보 가독성 (커뮤니티 버전에서도 적용 가능)
+  output:
+    ansi:
+      enabled: always
+
+  datasource:
+    url: jdbc:h2:./db_dev;MODE=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    # SQL 쿼리 로그 출력
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+
+    hibernate:
+      # create, create-drop, update, validate, none
+      ddl-auto: update
+
+
+
+
+logging:
+  # TRACE, DEBUG, INFO (상세해짐 <-> 간략해짐)
+  level:
+    # SQL 파라미터에 어떤게 들어갔는 지 로그 출력
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.hibernate.orm.jdbc.extract: TRACE
+
+server:
+  port: 8080
+
