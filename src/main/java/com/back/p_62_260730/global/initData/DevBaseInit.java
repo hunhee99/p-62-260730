@@ -1,6 +1,7 @@
 package com.back.p_62_260730.global.initData;
 
 import com.back.p_62_260730.domain.post.member.entity.Member;
+import com.back.p_62_260730.domain.post.member.repository.MemberRepository;
 import com.back.p_62_260730.domain.post.member.service.MemberService;
 import com.back.p_62_260730.domain.post.post.entity.Post;
 import com.back.p_62_260730.domain.post.post.service.PostService;
@@ -21,6 +22,9 @@ public class DevBaseInit {
 
     private final PostService postService;
     private final MemberService memberService;
+
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Lazy
     @Autowired
@@ -58,14 +62,20 @@ public class DevBaseInit {
         Member m4 = memberService.join("user2", "유저2");
         Member m5 = memberService.join("user3", "유저3");
 
-        postService.write(m3.getId(), "제목1", "내용1");
-        postService.write(m4.getId(),"제목2", "내용2");
+        postService.write(m3, "제목1", "내용1");
+        postService.write(m3,"제목2", "내용2");
 
     }
 
 
     void work2() {
-        postService.findById(1);
+        Post post = postService.findById(1).get();
+        System.out.println(post.getTitle());
+        System.out.println(post.getBody());
+        System.out.println(post.getAuthor().getNickname());
+
+        Member author = post.getAuthor();
+        System.out.println(author.getNickname());
         // select * from post where id = 1;
     }
 
@@ -88,4 +98,6 @@ public class DevBaseInit {
         Post post1 = postService.findById(1).get();
         postService.modify(post1, "제목1-수정4", "내용1-수정4");
     }
+
+
 }
