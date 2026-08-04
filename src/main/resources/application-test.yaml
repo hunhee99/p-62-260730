@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    # mem (메모리 환경에서 사용하겠다는 의미)
+    url: jdbc:h2:mem:db_dev;MODE=MySQL

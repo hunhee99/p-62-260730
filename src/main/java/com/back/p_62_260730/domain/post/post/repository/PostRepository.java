@@ -1,6 +1,6 @@
-package com.back.p_62_260730.domain.post.repository;
+package com.back.p_62_260730.domain.post.post.repository;
 
-import com.back.p_62_260730.domain.post.entity.Post;
+import com.back.p_62_260730.domain.post.post.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 // JpaRepository<사용할 객체, 식별자의 자료형>

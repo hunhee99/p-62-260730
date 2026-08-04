@@ -1,8 +1,8 @@
-package com.back.p_62_260730.domain.post.service;
+package com.back.p_62_260730.domain.post.post.service;
 
 
-import com.back.p_62_260730.domain.post.entity.Post;
-import com.back.p_62_260730.domain.post.repository.PostRepository;
+import com.back.p_62_260730.domain.post.post.entity.Post;
+import com.back.p_62_260730.domain.post.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,8 @@ public class PostService {
     private final PostRepository postRepository;    // 레포의 메소드 단위로 트렌젝션 잡힘
 
 
-    public Post write(String title, String body){
-        Post post = new Post(title, body);
+    public Post write(int authorId, String title, String body){
+        Post post = new Post(authorId, title, body);
         postRepository.save(post);  // INSERT INTO .. DB에 반영됨
 
         // 저장을 했으면 저장한 값을 반환하는 게 관례
