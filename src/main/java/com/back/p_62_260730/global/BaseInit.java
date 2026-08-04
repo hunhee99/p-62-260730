@@ -37,7 +37,7 @@ public class BaseInit {
 //                self.work3();
 //            }).start();
             
-            work4();
+            self.work4();
         };
     }
 
@@ -74,9 +74,10 @@ public class BaseInit {
         postService.delete(post2);
     }
 
+    // 더티 채킹 -> Transactional을 걸면 save없이 수정이 DB에 반영됨
     @Transactional
     void work4() {
         Post post1 = postService.findById(1).get();
-        postService.modify(post1, "제목1-수정", "내용1-수정");
+        postService.modify(post1, "제목1-수정3", "내용1-수정3");
     }
 }

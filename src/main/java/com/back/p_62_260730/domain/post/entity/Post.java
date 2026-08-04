@@ -36,15 +36,6 @@ public class Post{
     @LastModifiedDate
     private LocalDateTime modifyDate;
 
-//    // 추가적인 생성자가 있으면 기본 생성자는 자동 생성이 안됨. 만들 것 @NoArgsConstructor 이거 있으면 ㄱㅊ
-//    public Post(){
-//        this.title = "";
-//        this.body = "";
-//    }
-
-//    public Post() {
-//        this.id = 0;
-//    }
 
     // JPA reflection에 의해 기본 생성자 없이는 불가
     public Post(String title, String body){
@@ -60,4 +51,9 @@ public class Post{
         throw new RuntimeException("id 사용 불가");
     }
 
+    // 수정 (지껀 지가 만지는게 좋음)
+    public void modify(String title, String body){
+        this.title = title;
+        this.body = body;
+    }
 }

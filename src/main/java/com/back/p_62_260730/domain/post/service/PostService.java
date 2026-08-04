@@ -27,9 +27,8 @@ public class PostService {
 
     // 수정
     public void modify(Post post, String title, String body){
-        post.setTitle(title);
-        post.setBody(body);
-        postRepository.save(post);
+        post.modify(title, body);
+
     }
 
 
